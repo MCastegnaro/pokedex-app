@@ -1,6 +1,14 @@
-import React from "react";
-import Routes from "./routes";
+import { Header } from "./components/Header";
+import PokeRoutes from "./routes";
 
-const App = () => <Routes />;
+import { GlobalStyle } from "./styles/global";
+
+const App = () => (
+  <>
+    <GlobalStyle />
+    <Header />
+    <PokeRoutes />
+  </>
+);
 
 export default App;

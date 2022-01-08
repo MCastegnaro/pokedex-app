@@ -1,12 +1,12 @@
-import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+
 import App from "./App";
 
-import "./global.css";
-
-ReactDOM.render(
-  <React.StrictMode>
+const element = (
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </BrowserRouter>
 );
+
+ReactDOM.render(element, document.getElementById("root"));
