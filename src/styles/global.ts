@@ -1,6 +1,7 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 import Cursola from "../assets/cursola.svg";
+import Pokersor from "../assets/pokersor.svg";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -11,6 +12,19 @@ export const GlobalStyle = createGlobalStyle`
   --danger-color: #D93E30;
   --light-color: #F6F7F9;
   --dark-color: #212121;
+
+  --h1-size: 72px; 
+  --h2-size: 64px; 
+  --h3-size: 36px; 
+  --h4-size: 24px;
+  --h5-size: 18px;
+  --h6-size: 12px;
+  --paragraph-size: 16px;
+
+
+  --device-mobile: 360px;
+  --device-tablet: 744px;
+  --device-desktop: 1280px;
 }
 
 body {
@@ -20,14 +34,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: url(assets/cursola.svg), auto;
+
   cursor: url(${Cursola}), auto;
 }
+
+  button{
+    cursor: url(${Pokersor}), auto;
+  }
 
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+`;
 
+export const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
 
+  height: 100vh;
 `;

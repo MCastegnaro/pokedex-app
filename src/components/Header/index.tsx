@@ -4,7 +4,7 @@ import { NavBar, Wrapper } from "./styles";
 
 const Header = () => (
   <Wrapper>
-    <img src={Pokelogo} alt="pokelogo" />
+    <img src={Pokelogo} alt="Logo do pokemon" />
     <NavBar>
       <Link to="">Início</Link>
       <Link to="pokedex">Pokedex</Link>
