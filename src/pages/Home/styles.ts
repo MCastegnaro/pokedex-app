@@ -19,7 +19,7 @@ export const Wrapper = styled.section`
   }
 `;
 
-export const Content = styled.main`
+export const Content = styled.article`
   display: flex;
   flex-direction: column;
 

@@ -2,8 +2,8 @@ import { Wrapper } from "./styles";
 
 const Footer = () => (
   <Wrapper>
-    <span>Make with ❤️ for the PokéSpartans team Platzi Master</span>
-    <span>Ours Team</span>
+    <span>Hecho con ❤️ por amigos de Mathask </span>
+    <span>Nuestro equipo</span>
   </Wrapper>
 );
 

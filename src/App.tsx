@@ -2,13 +2,15 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import PokeRoutes from "./routes";
 
-import { GlobalStyle, Wrapper } from "./styles/global";
+import { GlobalStyle, Wrapper, Content } from "./styles/global";
 
 const App = () => (
   <Wrapper>
     <GlobalStyle />
     <Header />
-    <PokeRoutes />
+    <Content>
+      <PokeRoutes />
+    </Content>
     <Footer />
   </Wrapper>
 );
