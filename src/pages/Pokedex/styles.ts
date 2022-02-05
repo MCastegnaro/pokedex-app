@@ -53,14 +53,20 @@ export const Search = styled.article`
 
 export const Content = styled.section`
   margin-top: 56px;
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 40px;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 export const Card = styled.article`
   height: 136px;
-  width: 350px;
   border-radius: 8px;
 
   display: flex;
+  flex: 1 1 30%;
 `;
 
 export const Info = styled.article`
