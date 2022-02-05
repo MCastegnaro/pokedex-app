@@ -51,36 +51,20 @@ export const Search = styled.article`
   }
 `;
 
-export const Categories = styled.article`
-  width: 200px;
+export const Content = styled.section``;
 
-  .selectBox {
-    position: relative;
-  }
+export const Card = styled.article`
+  height: 136px;
+  width: 350px;
+  border-radius: 8px;
 
-  .selectBox select {
-    width: 100%;
-    font-weight: bold;
-  }
-
-  .overSelect {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
+  display: flex;
 `;
 
-export const Checkbox = styled.section`
-  display: none;
-  border: 1px #dadada solid;
+export const Info = styled.article``;
 
-  label {
-    display: block;
+export const Skills = styled.article``;
 
-    :hover {
-      background-color: #1e90ff;
-    }
-  }
-`;
+export const Types = styled.article``;
+
+export const PokeImage = styled.article``;
