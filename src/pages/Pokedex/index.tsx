@@ -1,20 +1,41 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { pokeApi } from "../../services/api";
-import { Checkbox, Filter, Search, Wrapper } from "./styles";
+import { Categories, Checkbox, Filter, Search, Wrapper } from "./styles";
 
-interface IPokeResult {}
+interface IPokeResult {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: Array<{
+    name: string;
+    url: string;
+  }>;
+}
 
 const Pokedex = () => {
-  const [pokemons, setPokemons] = useState<Array<any>>([]);
-  const [pokeTypes, setPokeTypes] = useState<Array<any>>([]);
+  const [pokemons, setPokemons] = useState<IPokeResult>({} as IPokeResult);
+  const [pokeTypes, setPokeTypes] = useState<IPokeResult>({} as IPokeResult);
   const [loading, setLoading] = useState<boolean>(false);
+
+  let expanded = false;
+
+  function showCheckboxes() {
+    var checkboxes = document.getElementById("checkboxes");
+    if (!expanded) {
+      checkboxes!.style.display = "block";
+      expanded = true;
+    } else {
+      checkboxes!.style.display = "none";
+      expanded = false;
+    }
+  }
 
   useEffect(() => {
     setLoading(true);
 
     pokeApi
       .get("pokemon?limit=151")
-      .then((response) => setPokemons(response.data.results))
+      .then((response) => setPokemons(response.data as IPokeResult))
       .catch()
       .finally(() => setLoading(false));
   }, []);
@@ -22,7 +43,7 @@ const Pokedex = () => {
   useLayoutEffect(() => {
     pokeApi
       .get("type")
-      .then((response) => setPokeTypes(response.data.results))
+      .then((response) => setPokeTypes(response.data as IPokeResult))
       .catch()
       .finally(() => setLoading(false));
   }, []);
@@ -38,22 +59,29 @@ const Pokedex = () => {
           </h3>
           <input type="text" placeholder="Encuentra tu pokémon..." />
         </Search>
+        <form>
+          <Categories>
+            <div className="selectBox" onClick={() => showCheckboxes()}>
+              <select name="poketypes" id="poketypes">
+                <option>Tipo</option>
+              </select>
+              <div className="overSelect"></div>
+            </div>
 
-        <Checkbox>
-          <select name="" id=""></select>
+            <Checkbox id="checkboxes">
+              {pokeTypes.results?.map((type) => (
+                <label key={type.name} htmlFor={type.name}>
+                  <input type="checkbox" id={type.name} />
 
-          <select name="" id="">
-            <option value="">fire</option>
-            <option value="">normal</option>
-          </select>
-          <select name="" id="">
-            <option value="">fire</option>
-            <option value="">normal</option>
-          </select>
-        </Checkbox>
+                  {type.name}
+                </label>
+              ))}
+            </Checkbox>
+          </Categories>
+        </form>
       </Filter>
 
-      {/* {pokemons.map((pokemon: any) => (
+      {/* {pokemons.results?.map((pokemon) => (
         <div key={pokemon.name}>
           <h1>{pokemon.name} - </h1>
           <h1>{pokemon.url}</h1>
