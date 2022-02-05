@@ -28,7 +28,7 @@ export const Search = styled.article`
   input {
     width: 100%;
     height: 56px;
-    padding: 0 32px;
+    text-indent: 24px;
 
     border-radius: 40px;
     border: none;
@@ -51,7 +51,9 @@ export const Search = styled.article`
   }
 `;
 
-export const Content = styled.section``;
+export const Content = styled.section`
+  margin-top: 56px;
+`;
 
 export const Card = styled.article`
   height: 136px;
@@ -61,10 +63,63 @@ export const Card = styled.article`
   display: flex;
 `;
 
-export const Info = styled.article``;
+export const Info = styled.article`
+  width: 120px;
+  background: var(--light-color);
 
-export const Skills = styled.article``;
+  display: inherit;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  h5 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: var(--h5-size);
+    line-height: 24px;
+    margin: 0;
+
+    color: var(--dark-color);
+    text-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
+  }
+`;
+
+export const Skills = styled.article`
+  display: inherit;
+  flex-direction: column;
+
+  div:first-child {
+    span {
+      border: 3px solid var(--dark-color);
+      box-sizing: border-box;
+      border-radius: 50%;
+
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 2px;
+
+      font-style: normal;
+      font-weight: normal;
+      font-size: var(--paragraph-size);
+      line-height: 18px;
+
+      color: var(--dark-color);
+    }
+  }
+
+  div {
+    display: inherit;
+    justify-content: space-around;
+  }
+`;
 
 export const Types = styled.article``;
 
-export const PokeImage = styled.article``;
+export const PokeImage = styled.article`
+  flex: 1;
+  background: linear-gradient(270deg, #64d368 0.15%, #64d368 70.88%);
+`;

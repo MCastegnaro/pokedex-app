@@ -52,12 +52,16 @@ const Pokedex = () => {
       <Content>
         <Card>
           <Info>
-            <h3>Pikachu</h3>
+            <h5>Pikachu</h5>
             <Skills>
-              <span>419</span>
-              <span>ataque</span>
-              <span>40</span>
-              <span>defesa</span>
+              <div>
+                <span>419</span>
+                <span>40</span>
+              </div>
+              <div>
+                <span>ataque</span>
+                <span>defesa</span>
+              </div>
             </Skills>
             <Types>
               <span>Grass</span>
@@ -68,8 +72,8 @@ const Pokedex = () => {
             <img
               src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
               alt=""
-              height="150"
-              width="150"
+              height="136"
+              width="160"
             />
           </PokeImage>
         </Card>
