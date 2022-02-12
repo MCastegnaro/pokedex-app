@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { AxiosResponse } from "axios";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { pokeApi } from "../../services/api";
 import {
   Card,
@@ -22,17 +23,31 @@ interface IPokeResult {
   }>;
 }
 
+interface IPokeDetails {
+  id: number;
+  name: string;
+}
+
 const Pokedex = () => {
-  const [pokemons, setPokemons] = useState<IPokeResult>({} as IPokeResult);
+  const [pokemons, setPokemons] = useState<IPokeDetails[]>(
+    [] as IPokeDetails[]
+  );
+
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(true);
-
     pokeApi
-      .get("pokemon?limit=151")
-      .then((response) => setPokemons(response.data as IPokeResult))
-      .catch()
+      .get("pokemon?limit=9")
+      .then((response: AxiosResponse<IPokeResult>) => {
+        return response.data.results;
+      })
+      .then((results) => {
+        return Promise.all(results.map((res) => pokeApi.get(res.url)));
+      })
+      .then((results) => {
+        setPokemons(results.map((res) => res.data));
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -50,249 +65,35 @@ const Pokedex = () => {
       </Filter>
 
       <Content>
-        <Card>
-          <Info>
-            <h5>Pikachu</h5>
-            <Skills>
-              <div>
-                <span>419</span>
-                <span>40</span>
-              </div>
-              <div>
-                <span>ataque</span>
-                <span>defesa</span>
-              </div>
-            </Skills>
-            <Types>
-              <span>Grass</span>
-              <span>Poison</span>
-            </Types>
-          </Info>
-          <PokeImage>
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-              alt=""
-              height="136"
-              width="160"
-            />
-          </PokeImage>
-        </Card>
-        <Card>
-          <Info>
-            <h5>Pikachu</h5>
-            <Skills>
-              <div>
-                <span>419</span>
-                <span>40</span>
-              </div>
-              <div>
-                <span>ataque</span>
-                <span>defesa</span>
-              </div>
-            </Skills>
-            <Types>
-              <span>Grass</span>
-              <span>Poison</span>
-            </Types>
-          </Info>
-          <PokeImage>
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-              alt=""
-              height="136"
-              width="160"
-            />
-          </PokeImage>
-        </Card>
-        <Card>
-          <Info>
-            <h5>Pikachu</h5>
-            <Skills>
-              <div>
-                <span>419</span>
-                <span>40</span>
-              </div>
-              <div>
-                <span>ataque</span>
-                <span>defesa</span>
-              </div>
-            </Skills>
-            <Types>
-              <span>Grass</span>
-              <span>Poison</span>
-            </Types>
-          </Info>
-          <PokeImage>
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-              alt=""
-              height="136"
-              width="160"
-            />
-          </PokeImage>
-        </Card>
-        <Card>
-          <Info>
-            <h5>Pikachu</h5>
-            <Skills>
-              <div>
-                <span>419</span>
-                <span>40</span>
-              </div>
-              <div>
-                <span>ataque</span>
-                <span>defesa</span>
-              </div>
-            </Skills>
-            <Types>
-              <span>Grass</span>
-              <span>Poison</span>
-            </Types>
-          </Info>
-          <PokeImage>
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-              alt=""
-              height="136"
-              width="160"
-            />
-          </PokeImage>
-        </Card>
-        <Card>
-          <Info>
-            <h5>Pikachu</h5>
-            <Skills>
-              <div>
-                <span>419</span>
-                <span>40</span>
-              </div>
-              <div>
-                <span>ataque</span>
-                <span>defesa</span>
-              </div>
-            </Skills>
-            <Types>
-              <span>Grass</span>
-              <span>Poison</span>
-            </Types>
-          </Info>
-          <PokeImage>
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-              alt=""
-              height="136"
-              width="160"
-            />
-          </PokeImage>
-        </Card>
-        <Card>
-          <Info>
-            <h5>Pikachu</h5>
-            <Skills>
-              <div>
-                <span>419</span>
-                <span>40</span>
-              </div>
-              <div>
-                <span>ataque</span>
-                <span>defesa</span>
-              </div>
-            </Skills>
-            <Types>
-              <span>Grass</span>
-              <span>Poison</span>
-            </Types>
-          </Info>
-          <PokeImage>
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-              alt=""
-              height="136"
-              width="160"
-            />
-          </PokeImage>
-        </Card>
-        <Card>
-          <Info>
-            <h5>Pikachu</h5>
-            <Skills>
-              <div>
-                <span>419</span>
-                <span>40</span>
-              </div>
-              <div>
-                <span>ataque</span>
-                <span>defesa</span>
-              </div>
-            </Skills>
-            <Types>
-              <span>Grass</span>
-              <span>Poison</span>
-            </Types>
-          </Info>
-          <PokeImage>
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-              alt=""
-              height="136"
-              width="160"
-            />
-          </PokeImage>
-        </Card>
-        <Card>
-          <Info>
-            <h5>Pikachu</h5>
-            <Skills>
-              <div>
-                <span>419</span>
-                <span>40</span>
-              </div>
-              <div>
-                <span>ataque</span>
-                <span>defesa</span>
-              </div>
-            </Skills>
-            <Types>
-              <span>Grass</span>
-              <span>Poison</span>
-            </Types>
-          </Info>
-          <PokeImage>
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-              alt=""
-              height="136"
-              width="160"
-            />
-          </PokeImage>
-        </Card>
-        <Card>
-          <Info>
-            <h5>Pikachu</h5>
-            <Skills>
-              <div>
-                <span>419</span>
-                <span>40</span>
-              </div>
-              <div>
-                <span>ataque</span>
-                <span>defesa</span>
-              </div>
-            </Skills>
-            <Types>
-              <span>Grass</span>
-              <span>Poison</span>
-            </Types>
-          </Info>
-          <PokeImage>
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-              alt=""
-              height="136"
-              width="160"
-            />
-          </PokeImage>
-        </Card>
+        {pokemons?.map((pokemon) => (
+          <Card key={pokemon.id}>
+            <Info>
+              <h5>{pokemon.name}</h5>
+              <Skills>
+                <div>
+                  <span>419</span>
+                  <span>40</span>
+                </div>
+                <div>
+                  <span>ataque</span>
+                  <span>defesa</span>
+                </div>
+              </Skills>
+              <Types>
+                <span>Grass</span>
+                <span>Poison</span>
+              </Types>
+            </Info>
+            <PokeImage>
+              <img
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+                alt=""
+                height="136"
+                width="160"
+              />
+            </PokeImage>
+          </Card>
+        ))}
       </Content>
     </Wrapper>
   );
