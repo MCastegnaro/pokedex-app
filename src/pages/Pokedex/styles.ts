@@ -5,6 +5,7 @@ export const Wrapper = styled.section`
   flex: 1;
   flex-direction: column;
   padding: 16px 160px;
+  max-width: 1280px;
 `;
 
 export const Filter = styled.section``;
@@ -63,7 +64,6 @@ export const Content = styled.section`
 
 export const Card = styled.article`
   height: 136px;
-  border-radius: 8px;
 
   display: flex;
   flex: 1 1 30%;
@@ -72,6 +72,8 @@ export const Card = styled.article`
 export const Info = styled.article`
   width: 120px;
   background: var(--light-color);
+
+  border-radius: 8px 0 0 8px;
 
   display: inherit;
   flex-direction: column;
@@ -126,6 +128,11 @@ export const Skills = styled.article`
 export const Types = styled.article``;
 
 export const PokeImage = styled.article`
+  display: flex;
+  justify-content: center;
   flex: 1;
+
   background: linear-gradient(270deg, #64d368 0.15%, #64d368 70.88%);
+
+  border-radius: 0 8px 8px 0;
 `;

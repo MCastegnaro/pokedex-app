@@ -58,4 +58,5 @@ export const Wrapper = styled.div`
 export const Content = styled.main`
   display: inherit;
   flex: 1;
+  justify-content: center;
 `;
