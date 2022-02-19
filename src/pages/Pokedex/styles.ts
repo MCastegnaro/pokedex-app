@@ -81,13 +81,15 @@ export const Card = styled.article`
 
 export const Info = styled.article`
   width: 120px;
+  padding-left: 24px;
+
   background: var(--light-color);
 
   border-radius: 8px 0 0 8px;
 
   display: inherit;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-evenly;
 
   h5 {
@@ -106,8 +108,11 @@ export const Info = styled.article`
 export const Skills = styled.article`
   display: inherit;
   flex-direction: column;
+  align-items: center;
 
   div:first-child {
+    gap: 14px;
+    margin-bottom: 5px;
     span {
       border: 3px solid var(--dark-color);
       box-sizing: border-box;
@@ -132,7 +137,17 @@ export const Skills = styled.article`
 
   div {
     display: inherit;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    span {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 14px;
+      text-align: center;
+    }
   }
 `;
 
@@ -141,14 +156,26 @@ export const Types = styled.article`
 
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+
+  gap: 8px;
 `;
 
 export const PokeTag = styled.span<IPokeTag>`
   background: ${(props) => getBackgroundColor[props.backgroundColor]};
   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.18);
   border-radius: 10px;
-  padding: 1px 8px;
+  padding: 4px 24px;
+  z-index: 1;
+
+  text-transform: capitalize;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+
+  color: var(--dark-color);
 `;
 
 export const PokeImage = styled.article<IPokeImage>`

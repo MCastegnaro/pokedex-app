@@ -95,8 +95,8 @@ const Pokedex = () => {
                   <span>{pokemon.stats[2].base_stat}</span>
                 </div>
                 <div>
-                  <span>ataque</span>
-                  <span>defesa</span>
+                  <span>Attack</span>
+                  <span>Defense</span>
                 </div>
               </Skills>
               <Types>
@@ -120,8 +120,6 @@ const Pokedex = () => {
                   pokemon.sprites.other["official-artwork"].front_default
                 }
                 alt="Imagen de pokémon"
-                max-height="120"
-                max-width="140"
               />
             </PokeImage>
           </Card>
