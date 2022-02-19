@@ -1,12 +1,14 @@
 import { AxiosResponse } from "axios";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { pokeApi } from "../../services/api";
+
 import {
   Card,
   Content,
   Filter,
   Info,
   PokeImage,
+  PokeTag,
   Search,
   Skills,
   Types,
@@ -26,6 +28,24 @@ interface IPokeResult {
 interface IPokeDetails {
   id: number;
   name: string;
+  stats: Array<{
+    base_stat: number;
+  }>;
+  sprites: {
+    other: {
+      dream_world: {
+        front_default: string;
+      };
+      "official-artwork": {
+        front_default: string;
+      };
+    };
+  };
+  types: Array<{
+    type: {
+      name: string;
+    };
+  }>;
 }
 
 const Pokedex = () => {
@@ -43,9 +63,9 @@ const Pokedex = () => {
         return response.data.results;
       })
       .then((results) => {
-        return Promise.all(results.map((res) => pokeApi.get(res.url)));
+        return Promise.all(results.map((element) => pokeApi.get(element.url)));
       })
-      .then((results) => {
+      .then((results: AxiosResponse<IPokeDetails>[]) => {
         setPokemons(results.map((res) => res.data));
       })
       .finally(() => setLoading(false));
@@ -53,8 +73,6 @@ const Pokedex = () => {
 
   return (
     <Wrapper>
-      {loading && <h1>Loading ...</h1>}
-
       <Filter>
         <Search>
           <h3>
@@ -64,6 +82,8 @@ const Pokedex = () => {
         </Search>
       </Filter>
 
+      {loading && <h1>Loading ...</h1>}
+
       <Content>
         {pokemons?.map((pokemon) => (
           <Card key={pokemon.id}>
@@ -71,8 +91,8 @@ const Pokedex = () => {
               <h5>{pokemon.name}</h5>
               <Skills>
                 <div>
-                  <span>419</span>
-                  <span>40</span>
+                  <span>{pokemon.stats[1].base_stat}</span>
+                  <span>{pokemon.stats[2].base_stat}</span>
                 </div>
                 <div>
                   <span>ataque</span>
@@ -80,16 +100,28 @@ const Pokedex = () => {
                 </div>
               </Skills>
               <Types>
-                <span>Grass</span>
-                <span>Poison</span>
+                {pokemon.types.map((element) => (
+                  <PokeTag
+                    backgroundColor={element.type.name}
+                    key={element.type.name + Math.random() * (1000 - 0) + 0}
+                  >
+                    {element.type.name}
+                  </PokeTag>
+                ))}
               </Types>
             </Info>
-            <PokeImage>
+            <PokeImage
+              backgroundColor={pokemon.types[0].type.name}
+              gradientBackgroundColor={pokemon.types[1]?.type.name}
+            >
               <img
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-                alt=""
-                height="136"
-                width="160"
+                src={
+                  pokemon.sprites.other.dream_world.front_default ||
+                  pokemon.sprites.other["official-artwork"].front_default
+                }
+                alt="Imagen de pokémon"
+                max-height="120"
+                max-width="140"
               />
             </PokeImage>
           </Card>

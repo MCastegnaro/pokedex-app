@@ -1,4 +1,14 @@
 import styled from "styled-components";
+import { getBackgroundColor } from "../../utils";
+
+interface IPokeImage {
+  backgroundColor: string;
+  gradientBackgroundColor: string;
+}
+
+interface IPokeTag {
+  backgroundColor: string;
+}
 
 export const Wrapper = styled.section`
   display: flex;
@@ -89,6 +99,7 @@ export const Info = styled.article`
 
     color: var(--dark-color);
     text-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
+    text-transform: capitalize;
   }
 `;
 
@@ -125,14 +136,35 @@ export const Skills = styled.article`
   }
 `;
 
-export const Types = styled.article``;
+export const Types = styled.article`
+  width: inherit;
 
-export const PokeImage = styled.article`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+`;
+
+export const PokeTag = styled.span<IPokeTag>`
+  background: ${(props) => getBackgroundColor[props.backgroundColor]};
+  box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.18);
+  border-radius: 10px;
+  padding: 1px 8px;
+`;
+
+export const PokeImage = styled.article<IPokeImage>`
   display: flex;
   justify-content: center;
   flex: 1;
 
-  background: linear-gradient(270deg, #64d368 0.15%, #64d368 70.88%);
+  padding: 8px;
 
+  background: linear-gradient(
+    205deg,
+    ${(props) =>
+        getBackgroundColor[props.gradientBackgroundColor] ||
+        getBackgroundColor[props.backgroundColor]}
+      48.4%,
+    ${(props) => getBackgroundColor[props.backgroundColor]} 50.88%
+  );
   border-radius: 0 8px 8px 0;
 `;
