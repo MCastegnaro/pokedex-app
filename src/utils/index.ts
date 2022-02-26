@@ -11,7 +11,7 @@ const getBackgroundColor: { [key: string]: string } = {
   fire: "#F57D31",
   water: "#6493EB",
   grass: "#74CB48",
-  electric: "#F9CF30",
+  electric: "#ebbc0c",
   psychic: "#FB5584",
   ice: "#9AD6DF",
   dragon: "#7037FF",

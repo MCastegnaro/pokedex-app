@@ -170,12 +170,12 @@ export const PokeTag = styled.span<IPokeTag>`
 
   text-transform: capitalize;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 600;
   font-size: 14px;
   line-height: 14px;
   text-align: center;
 
-  color: var(--dark-color);
+  color: var(--light-color);
 `;
 
 export const PokeImage = styled.article<IPokeImage>`
