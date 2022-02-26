@@ -163,7 +163,7 @@ export const Types = styled.article`
 
 export const PokeTag = styled.span<IPokeTag>`
   background: ${(props) => getBackgroundColor[props.backgroundColor]};
-  box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.18);
+  box-shadow: inset 0px -4px 0px rgba(0, 0, 0, 0.18);
   border-radius: 10px;
   padding: 4px 24px;
   z-index: 1;
