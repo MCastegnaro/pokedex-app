@@ -20,9 +20,9 @@ import { PokeModal } from "../../components/PokeModal";
 
 const Pokedex = () => {
   const [pokemons, setPokemons] = useState<PokeDetails[]>([] as PokeDetails[]);
-  const [pokemonDetail, setPokemonDetail] = useState<PokeDetails>(
-    {} as PokeDetails
-  );
+  const [pokemonDetail, setPokemonDetail] = useState<PokeDetails>({
+    types: [{}],
+  } as PokeDetails);
   const [loading, setLoading] = useState<boolean>(false);
   const [isValidPokemon, setIsValidPokemon] = useState<boolean>(true);
   const [cachePokemons, setCachePokemons] = useState<PokeDetails[]>(
