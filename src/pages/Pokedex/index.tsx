@@ -18,20 +18,28 @@ import {
 const Pokedex = () => {
   const [pokemons, setPokemons] = useState<PokeDetails[]>([] as PokeDetails[]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [isValidPokemon, setIsValidPokemon] = useState<boolean>(true);
+  const [cachePokemons, setCachePokemons] = useState<PokeDetails[]>(
+    [] as PokeDetails[]
+  );
 
   let filterTimeout: NodeJS.Timeout;
 
   const doPokeFilter = (pokename: string) => {
     clearTimeout(filterTimeout);
-    if (!pokename) return setPokemons([]);
+    if (!pokename) {
+      setIsValidPokemon(true);
+      setPokemons(cachePokemons);
+      return;
+    }
 
     filterTimeout = setTimeout(() => {
       setLoading(true);
 
-      getPokemon(pokename)
+      getPokemon(pokename.toLowerCase())
         .then((pokeDetailsArray) => setPokemons(pokeDetailsArray))
-        .catch((error) => {
-          alert(error);
+        .catch(() => {
+          setIsValidPokemon(false);
         })
         .finally(() => setLoading(false));
     }, 2000);
@@ -41,7 +49,10 @@ const Pokedex = () => {
     setLoading(true);
 
     listPokemons()
-      .then((pokeDetailsArray) => setPokemons(pokeDetailsArray))
+      .then((pokeDetailsArray) => {
+        setPokemons(pokeDetailsArray);
+        setCachePokemons(pokeDetailsArray);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -65,45 +76,56 @@ const Pokedex = () => {
       {loading && <h1>Loading ...</h1>}
 
       <Content>
-        {pokemons?.map((pokemon) => (
-          <Card key={pokemon.id}>
-            <Info>
-              <h5>{pokemon.name}</h5>
-              <Skills>
-                <div>
-                  <span>{pokemon.stats[1].base_stat}</span>
-                  <span>{pokemon.stats[2].base_stat}</span>
-                </div>
-                <div>
-                  <span>Attack</span>
-                  <span>Defense</span>
-                </div>
-              </Skills>
-              <Types>
-                {pokemon.types.map((element) => (
-                  <PokeTag
-                    backgroundColor={element.type.name}
-                    key={element.type.name + Math.random() * (1000 - 0) + 0}
-                  >
-                    {element.type.name}
-                  </PokeTag>
-                ))}
-              </Types>
-            </Info>
-            <PokeImage
-              backgroundColor={pokemon.types[0].type.name}
-              gradientBackgroundColor={pokemon.types[1]?.type.name}
-            >
-              <img
-                src={
-                  pokemon.sprites.other.dream_world.front_default ||
-                  pokemon.sprites.other["official-artwork"].front_default
-                }
-                alt="Imagen de pokémon"
-              />
-            </PokeImage>
-          </Card>
-        ))}
+        {!isValidPokemon && (
+          <div>
+            <h1>Who's that pokemon?</h1>
+            <img
+              src="http://pa1.narvii.com/6271/d03c2b28ac055a7695b8a66f092dca4f07498266_00.gif"
+              alt=""
+            />
+            <h1>The pokemon was not found!</h1>
+          </div>
+        )}
+        {isValidPokemon &&
+          pokemons?.map((pokemon) => (
+            <Card key={pokemon.id}>
+              <Info>
+                <h5>{pokemon.name}</h5>
+                <Skills>
+                  <div>
+                    <span>{pokemon.stats[1].base_stat}</span>
+                    <span>{pokemon.stats[2].base_stat}</span>
+                  </div>
+                  <div>
+                    <span>Attack</span>
+                    <span>Defense</span>
+                  </div>
+                </Skills>
+                <Types>
+                  {pokemon.types.map((element) => (
+                    <PokeTag
+                      backgroundColor={element.type.name}
+                      key={element.type.name + Math.random() * (1000 - 0) + 0}
+                    >
+                      {element.type.name}
+                    </PokeTag>
+                  ))}
+                </Types>
+              </Info>
+              <PokeImage
+                backgroundColor={pokemon.types[0].type.name}
+                gradientBackgroundColor={pokemon.types[1]?.type.name}
+              >
+                <img
+                  src={
+                    pokemon.sprites.other.dream_world.front_default ||
+                    pokemon.sprites.other["official-artwork"].front_default
+                  }
+                  alt="Imagen de pokémon"
+                />
+              </PokeImage>
+            </Card>
+          ))}
       </Content>
     </Wrapper>
   );
