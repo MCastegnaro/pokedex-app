@@ -15,13 +15,21 @@ import {
   Wrapper,
 } from "./styles";
 
+import { NotFoundPokemon } from "../../components/NotFoundPokemon";
+import { PokeModal } from "../../components/PokeModal";
+
 const Pokedex = () => {
   const [pokemons, setPokemons] = useState<PokeDetails[]>([] as PokeDetails[]);
+  const [pokemonDetail, setPokemonDetail] = useState<PokeDetails>(
+    {} as PokeDetails
+  );
   const [loading, setLoading] = useState<boolean>(false);
   const [isValidPokemon, setIsValidPokemon] = useState<boolean>(true);
   const [cachePokemons, setCachePokemons] = useState<PokeDetails[]>(
     [] as PokeDetails[]
   );
+
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   let filterTimeout: NodeJS.Timeout;
 
@@ -68,27 +76,23 @@ const Pokedex = () => {
             onChange={(event: ChangeEvent<HTMLInputElement>) =>
               doPokeFilter(event.target.value)
             }
-            placeholder="Encuentra tu pokémon..."
+            placeholder="Find your favorite pokemon..."
           />
         </Search>
       </Filter>
 
       {loading && <h1>Loading ...</h1>}
-
       <Content>
-        {!isValidPokemon && (
-          <div>
-            <h1>Who's that pokemon?</h1>
-            <img
-              src="http://pa1.narvii.com/6271/d03c2b28ac055a7695b8a66f092dca4f07498266_00.gif"
-              alt=""
-            />
-            <h1>The pokemon was not found!</h1>
-          </div>
-        )}
+        {!isValidPokemon && <NotFoundPokemon />}
         {isValidPokemon &&
           pokemons?.map((pokemon) => (
-            <Card key={pokemon.id}>
+            <Card
+              key={pokemon.id}
+              onClick={() => {
+                setPokemonDetail(pokemon);
+                setIsOpen(true);
+              }}
+            >
               <Info>
                 <h5>{pokemon.name}</h5>
                 <Skills>
@@ -127,6 +131,11 @@ const Pokedex = () => {
             </Card>
           ))}
       </Content>
+      <PokeModal
+        isOpen={modalIsOpen}
+        setCloseModal={() => setIsOpen(false)}
+        data={pokemonDetail}
+      />
     </Wrapper>
   );
 };

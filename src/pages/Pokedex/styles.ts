@@ -166,7 +166,7 @@ export const PokeTag = styled.span<IPokeTag>`
   box-shadow: inset 0px -4px 0px rgba(0, 0, 0, 0.18);
   border-radius: 10px;
   padding: 4px 24px;
-  z-index: 1;
+  position: sticky;
 
   text-transform: capitalize;
   font-style: normal;
