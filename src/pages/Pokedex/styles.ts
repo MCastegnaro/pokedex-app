@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { getBackgroundColor } from "../../utils";
+import Pokebola from "../../assets/pokebola.svg";
 
 interface IPokeImage {
   backgroundColor: string;
@@ -77,6 +78,8 @@ export const Card = styled.article`
 
   display: flex;
   flex: 1 1 30%;
+
+  cursor: url(${Pokebola}), auto;
 `;
 
 export const Info = styled.article`

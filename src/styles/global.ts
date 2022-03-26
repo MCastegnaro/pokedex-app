@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 import Cursola from "../assets/cursola.svg";
-import Pokersor from "../assets/pokersor.svg";
+import Pokebola from "../assets/pokebola.svg";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -39,7 +39,7 @@ body {
 }
 
   button{
-    cursor: url(${Pokersor}), auto;
+    cursor: url(${Pokebola}), auto;
   }
 
   code {

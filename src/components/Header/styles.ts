@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Pokersor from "../../assets/pokersor.svg";
+import Pokebola from "../../assets/pokebola.svg";
 
 export const Wrapper = styled.header`
   display: flex;
@@ -25,7 +25,7 @@ export const NavBar = styled.nav`
     color: #4d4c4c;
     padding: 24px;
 
-    cursor: url(${Pokersor}), auto;
+    cursor: url(${Pokebola}), auto;
 
     :hover {
       color: black;
