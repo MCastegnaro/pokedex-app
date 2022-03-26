@@ -18,6 +18,8 @@ export const CloseIcon = styled.img.attrs({
 
   width: 15px;
   height: 15px;
+
+  cursor: url(${Pokebola}), auto;
 `;
 
 export const Wrapper = styled.article<WrapperProps>`
@@ -33,10 +35,6 @@ export const Wrapper = styled.article<WrapperProps>`
       48.4%,
     ${(props) => getBackgroundColor[props.backgroundColor]} 48.88%
   );
-
-  > img {
-    cursor: url(${Pokebola}), auto;
-  }
 `;
 
 export const PokeImage = styled.article`
@@ -48,6 +46,19 @@ export const PokeImage = styled.article`
 export const PokeInfo = styled.article`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   flex: 1;
+`;
+
+export const PokeStatus = styled.article`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Card = styled.article`
+  background-color: var(--light-color);
+  padding: 16px;
+
+  box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
+  border-radius: 8px;
 `;

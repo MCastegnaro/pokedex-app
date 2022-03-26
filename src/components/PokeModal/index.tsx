@@ -1,6 +1,13 @@
 import Modal from "react-modal";
 import { PokeDetails } from "../../models";
-import { CloseIcon, PokeImage, PokeInfo, Wrapper } from "./styles";
+import {
+  Card,
+  CloseIcon,
+  PokeImage,
+  PokeInfo,
+  PokeStatus,
+  Wrapper,
+} from "./styles";
 
 interface IPokeModalProps {
   isOpen: boolean;
@@ -46,13 +53,40 @@ const PokeModal = ({ isOpen, setCloseModal, data }: IPokeModalProps) => {
           />
         </PokeImage>
         <PokeInfo>
-          <div>
+          <Card>
             <h1>{data.name}</h1>
             <span>{data.id}</span>
-          </div>
-          <div>
-            <span></span>
-          </div>
+          </Card>
+          <Card>
+            <span>Abilities</span>
+            <span>Socu - chuti - vuadera</span>
+          </Card>
+
+          <Card>
+            <span>Health Points</span>
+            <span>1 000 000</span>
+
+            <span>Experience</span>
+            <span>1 000 000</span>
+          </Card>
+          <PokeStatus>
+            <Card>
+              <span>Defense</span>
+              <span>{data.stats[2].base_stat}</span>
+            </Card>
+            <Card>
+              <span>Attack</span>
+              <span>{data.stats[1].base_stat}</span>
+            </Card>
+            <Card>
+              <span>Sp Attack</span>
+              <span>{data.stats[3].base_stat}</span>
+            </Card>
+            <Card>
+              <span>Sp Defense</span>
+              <span>{data.stats[4].base_stat}</span>
+            </Card>
+          </PokeStatus>
         </PokeInfo>
       </Wrapper>
     </Modal>
