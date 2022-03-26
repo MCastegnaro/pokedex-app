@@ -193,8 +193,8 @@ export const PokeImage = styled.article<IPokeImage>`
     ${(props) =>
         getBackgroundColor[props.gradientBackgroundColor] ||
         getBackgroundColor[props.backgroundColor]}
-      48.4%,
-    ${(props) => getBackgroundColor[props.backgroundColor]} 50.88%
+      30.4%,
+    ${(props) => getBackgroundColor[props.backgroundColor]} 70.88%
   );
   border-radius: 0 8px 8px 0;
 `;

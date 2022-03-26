@@ -3,6 +3,7 @@ import { PokeDetails } from "../../models";
 import {
   Card,
   CloseIcon,
+  PokeHeader,
   PokeImage,
   PokeInfo,
   PokeStatus,
@@ -53,10 +54,10 @@ const PokeModal = ({ isOpen, setCloseModal, data }: IPokeModalProps) => {
           />
         </PokeImage>
         <PokeInfo>
-          <Card>
-            <h1>{data.name}</h1>
-            <span>{data.id}</span>
-          </Card>
+          <PokeHeader>
+            <h1>{data?.name}</h1>
+            <span>{data?.id}</span>
+          </PokeHeader>
           <Card>
             <span>Abilities</span>
             <span>Socu - chuti - vuadera</span>
@@ -64,27 +65,27 @@ const PokeModal = ({ isOpen, setCloseModal, data }: IPokeModalProps) => {
 
           <Card>
             <span>Health Points</span>
-            <span>1 000 000</span>
+            <span>{data?.stats[0]?.base_stat}</span>
 
             <span>Experience</span>
-            <span>1 000 000</span>
+            <span>{data?.base_experience}</span>
           </Card>
           <PokeStatus>
             <Card>
-              <span>Defense</span>
-              <span>{data.stats[2].base_stat}</span>
-            </Card>
-            <Card>
+              <span className="circle">{data?.stats[1]?.base_stat}</span>
               <span>Attack</span>
-              <span>{data.stats[1].base_stat}</span>
             </Card>
             <Card>
+              <span className="circle">{data?.stats[2]?.base_stat}</span>
+              <span>Defense</span>
+            </Card>
+            <Card>
+              <span className="circle">{data?.stats[3]?.base_stat}</span>
               <span>Sp Attack</span>
-              <span>{data.stats[3].base_stat}</span>
             </Card>
             <Card>
+              <span className="circle">{data?.stats[4]?.base_stat}</span>
               <span>Sp Defense</span>
-              <span>{data.stats[4].base_stat}</span>
             </Card>
           </PokeStatus>
         </PokeInfo>

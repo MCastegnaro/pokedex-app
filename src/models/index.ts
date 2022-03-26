@@ -11,6 +11,7 @@ type PokeResult = {
 type PokeDetails = {
   id: number;
   name: string;
+  base_experience: string;
   stats: Array<{
     base_stat: number;
   }>;
