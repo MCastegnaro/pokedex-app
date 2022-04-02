@@ -8,15 +8,14 @@ import {
   Filter,
   Info,
   PokeImage,
-  PokeTag,
   Search,
   Skills,
-  Types,
   Wrapper,
 } from "./styles";
 
 import { NotFoundPokemon } from "../../components/NotFoundPokemon";
 import { PokeModal } from "../../components/PokeModal";
+import { PokeTag } from "../../components/PokeTag";
 
 const Pokedex = () => {
   const [pokemons, setPokemons] = useState<PokeDetails[]>([] as PokeDetails[]);
@@ -108,16 +107,7 @@ const Pokedex = () => {
                     <span>Defense</span>
                   </div>
                 </Skills>
-                <Types>
-                  {pokemon.types.map((element) => (
-                    <PokeTag
-                      backgroundColor={element.type.name}
-                      key={element.type.name + Math.random() * (1000 - 0) + 0}
-                    >
-                      {element.type.name}
-                    </PokeTag>
-                  ))}
-                </Types>
+                <PokeTag data={pokemon} />
               </Info>
               <PokeImage
                 backgroundColor={pokemon.types[0].type.name}

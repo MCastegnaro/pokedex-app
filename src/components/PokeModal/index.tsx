@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import { PokeDetails } from "../../models";
 import { formatAbilitiesToArray } from "../../utils";
+import { PokeTag } from "../PokeTag";
 import {
   Card,
   CloseIcon,
@@ -55,6 +56,8 @@ const PokeModal = ({ isOpen, setCloseModal, data }: IPokeModalProps) => {
             alt="Imagen de pokémon"
           />
         </PokeImage>
+        {/* PARAMO AQUI - Passar classe para dentro do poketag para ajustar o posicionamento relativo das tags na modal. */}
+        <PokeTag data={data} classStyles="" />
         <PokeInfo>
           <PokeHeader>
             <h1>{data?.name}</h1>
