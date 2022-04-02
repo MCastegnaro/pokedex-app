@@ -23,7 +23,9 @@ const Pokedex = () => {
   const [pokemonDetail, setPokemonDetail] = useState<PokeDetails>({
     types: [{}],
     stats: [{}],
+    abilities: [{}],
   } as PokeDetails);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [isValidPokemon, setIsValidPokemon] = useState<boolean>(true);
   const [cachePokemons, setCachePokemons] = useState<PokeDetails[]>(

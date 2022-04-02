@@ -1,3 +1,5 @@
+import { Abilities } from "../models";
+
 const getBackgroundColor: { [key: string]: string } = {
   normal: "#AAA67F",
   fighting: "#C12239",
@@ -21,4 +23,10 @@ const getBackgroundColor: { [key: string]: string } = {
   shadow: "#70559B",
 };
 
-export { getBackgroundColor };
+const formatAbilitiesToArray = (abilities: Abilities[]): string =>
+  abilities.map((data) => toCapitalizeString(data.ability?.name)).join(" - ");
+
+const toCapitalizeString = (string: string): string =>
+  string?.trim().replace(/^\w/, (charOfString) => charOfString.toUpperCase());
+
+export { getBackgroundColor, formatAbilitiesToArray };

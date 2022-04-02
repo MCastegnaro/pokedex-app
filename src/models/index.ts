@@ -12,6 +12,7 @@ type PokeDetails = {
   id: number;
   name: string;
   base_experience: string;
+  abilities: Array<Abilities>;
   stats: Array<{
     base_stat: number;
   }>;
@@ -32,4 +33,10 @@ type PokeDetails = {
   }>;
 };
 
-export type { PokeResult, PokeDetails };
+type Abilities = {
+  ability: {
+    name: string;
+  };
+};
+
+export type { PokeResult, PokeDetails, Abilities };

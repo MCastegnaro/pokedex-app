@@ -1,8 +1,10 @@
 import Modal from "react-modal";
 import { PokeDetails } from "../../models";
+import { formatAbilitiesToArray } from "../../utils";
 import {
   Card,
   CloseIcon,
+  FakeProgress,
   PokeHeader,
   PokeImage,
   PokeInfo,
@@ -41,7 +43,7 @@ const PokeModal = ({ isOpen, setCloseModal, data }: IPokeModalProps) => {
     >
       <CloseIcon onClick={setCloseModal} />
       <Wrapper
-        backgroundColor={data?.types[0]?.type?.name}
+        backgroundColor={data.types[0].type?.name}
         gradientBackgroundColor={data?.types[1]?.type?.name}
       >
         <PokeImage>
@@ -60,30 +62,35 @@ const PokeModal = ({ isOpen, setCloseModal, data }: IPokeModalProps) => {
           </PokeHeader>
           <Card>
             <span>Abilities</span>
-            <span>Socu - chuti - vuadera</span>
+            <span>{formatAbilitiesToArray(data?.abilities)}</span>
           </Card>
 
-          <Card>
-            <span>Health Points</span>
-            <span>{data?.stats[0]?.base_stat}</span>
-
-            <span>Experience</span>
-            <span>{data?.base_experience}</span>
+          <Card orientation="row" gap="35px">
+            <div className="point-group">
+              <span>Health Points</span>
+              <span className="points">{data?.stats[0]?.base_stat}</span>
+              <FakeProgress color="#70A83B" />
+            </div>
+            <div className="point-group">
+              <span>Experience</span>
+              <span className="points">{data?.base_experience}</span>
+              <FakeProgress color="#F7C545" />
+            </div>
           </Card>
           <PokeStatus>
-            <Card>
+            <Card hAlign="center">
               <span className="circle">{data?.stats[1]?.base_stat}</span>
               <span>Attack</span>
             </Card>
-            <Card>
+            <Card hAlign="center">
               <span className="circle">{data?.stats[2]?.base_stat}</span>
               <span>Defense</span>
             </Card>
-            <Card>
+            <Card hAlign="center">
               <span className="circle">{data?.stats[3]?.base_stat}</span>
               <span>Sp Attack</span>
             </Card>
-            <Card>
+            <Card hAlign="center">
               <span className="circle">{data?.stats[4]?.base_stat}</span>
               <span>Sp Defense</span>
             </Card>
