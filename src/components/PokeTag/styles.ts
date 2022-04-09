@@ -1,7 +1,15 @@
 import styled from "styled-components";
 import { getBackgroundColor } from "../../utils";
 
-export const Types = styled.article`
+interface ITag {
+  backgroundColor: string;
+}
+
+interface ITypes {
+  tagQuantity: number;
+}
+
+export const Types = styled.article<ITypes>`
   width: inherit;
 
   display: flex;
@@ -9,17 +17,20 @@ export const Types = styled.article`
   justify-content: flex-start;
 
   gap: 8px;
-`;
 
-interface ITag {
-  backgroundColor: string;
-}
+  &.isInModal {
+    position: absolute;
+    bottom: 16px;
+    left: ${(props) => (props.tagQuantity > 1 ? 180 : 265)}px;
+  }
+`;
 
 export const Tag = styled.span<ITag>`
   background: ${(props) => getBackgroundColor[props.backgroundColor]};
   box-shadow: inset 0px -4px 0px rgba(0, 0, 0, 0.18);
   border-radius: 10px;
-  padding: 4px 24px;
+  padding: 4px 0px;
+  min-width: 80px;
   position: sticky;
 
   text-transform: capitalize;

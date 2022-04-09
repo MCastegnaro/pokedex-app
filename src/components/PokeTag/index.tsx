@@ -3,11 +3,11 @@ import { Tag, Types } from "./styles";
 
 interface IPokeTagProp {
   data: PokeDetails;
-  classStyles?: string;
+  classStyles?: "isInModal";
 }
 
 const PokeTag = ({ data, classStyles }: IPokeTagProp) => (
-  <Types className={classStyles}>
+  <Types className={classStyles} tagQuantity={data?.types.length}>
     {data?.types.map((element) => (
       <Tag
         backgroundColor={element.type.name}

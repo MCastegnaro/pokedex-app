@@ -57,7 +57,7 @@ const PokeModal = ({ isOpen, setCloseModal, data }: IPokeModalProps) => {
           />
         </PokeImage>
         {/* PARAMO AQUI - Passar classe para dentro do poketag para ajustar o posicionamento relativo das tags na modal. */}
-        <PokeTag data={data} classStyles="" />
+        <PokeTag data={data} classStyles="isInModal" />
         <PokeInfo>
           <PokeHeader>
             <h1>{data?.name}</h1>
