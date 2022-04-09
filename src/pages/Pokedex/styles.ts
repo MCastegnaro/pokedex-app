@@ -59,7 +59,7 @@ export const Search = styled.article`
   }
 `;
 
-export const Content = styled.section`
+export const Container = styled.section`
   margin-top: 56px;
   display: flex;
   flex-wrap: wrap;

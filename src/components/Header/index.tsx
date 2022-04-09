@@ -6,8 +6,8 @@ const Header = () => (
   <Wrapper>
     <img src={Pokelogo} alt="Logo do pokemon" />
     <NavBar>
-      <Link to="">Início</Link>
-      <Link to="pokedex">Pokedex</Link>
+      <Link to="/">Início</Link>
+      <Link to="/pokedex">Pokedex</Link>
     </NavBar>
   </Wrapper>
 );
